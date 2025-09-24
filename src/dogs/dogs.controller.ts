@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { DogsService } from './dogs.service';
 import { Dog } from './interfaces/dog.interface';
 import { CreateDogDto } from './dto/create-dog.dto';
@@ -17,8 +17,8 @@ export class DogsController {
     return this.dogsService.findAll();
   }
 
-  @Get('breed')
-  async findAllByBreed(): Promise<Dog[]> {
-    return this.dogsService.findAllByBreed('husky');
+  @Get('breed/:breed')
+  async findAllByBreed(@Param('breed') breed: string): Promise<Dog[]> {
+    return this.dogsService.findAllByBreed(breed);
   }
 }
