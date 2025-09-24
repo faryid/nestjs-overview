@@ -13,6 +13,10 @@ export class DogsService {
     return this.dogs;
   }
 
+  findOne(id: number): Dog {
+    return this.dogs[id];
+  }
+
   findAllByBreed(breed: string): Dog[] {
     return  this.dogs.filter(dog => dog.breed === breed);
   }
