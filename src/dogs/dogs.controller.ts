@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Body, Param, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Body, Param, NotFoundException, ParseIntPipe } from '@nestjs/common';
 import { DogsService } from './dogs.service';
 import { Dog } from './interfaces/dog.interface';
 import { CreateDogDto } from './dto/create-dog.dto';
@@ -18,8 +18,8 @@ export class DogsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Dog> {
-    const dog = this.dogsService.findOne(+id - 1);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Dog> {
+    const dog = this.dogsService.findOne(id - 1);
     if (!dog) throw new NotFoundException(`Dog ${id} not found.`);
     return dog;
   }
