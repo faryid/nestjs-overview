@@ -5,9 +5,10 @@ import { HorsesModule } from './horses/horses.module';
 import { DogsController } from './dogs/dogs.controller';
 import { DogsService } from './dogs/dogs.service';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [HorsesModule],
+  imports: [HorsesModule, AuthModule],
   controllers: [AppController, DogsController],
   providers: [AppService, DogsService],
 })
