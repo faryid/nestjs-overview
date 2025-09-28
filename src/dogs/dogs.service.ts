@@ -20,4 +20,8 @@ export class DogsService {
   findAllByBreed(breed: string): Dog[] {
     return  this.dogs.filter(dog => dog.breed === breed);
   }
+
+  remove(id: number): Dog {
+    return this.dogs.splice(id, 1)[0];    
+  }
 }
